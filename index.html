@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resin by Dounia - Créations de Mariage en Résine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2d2d2d;
+            --secondary: #d4af37;
+            --accent: #f5ede5;
+            --light-accent: #faf8f3;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 15px 40px rgba(45, 45, 45, 0.12);
+            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-accent);
+            line-height: 1.6;
+        }
+
+        /* ==================== TYPOGRAPHY ==================== */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid rgba(45, 45, 45, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: center;
+        }
+
+        nav button:hover {
+            color: var(--secondary);
+        }
+
+        nav button:hover::after {
+            transform: scaleX(1);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.2rem;
+            }
+            nav button {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.6rem;
+            }
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            margin-top: 70px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, var(--light-accent) 0%, var(--accent) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(45, 45, 45, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 30s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(40px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--secondary);
+            margin: 1.5rem auto 0;
+        }
+
+        /* ==================== ABOUT SECTION ==================== */
+        #about {
+            background: linear-gradient(180deg, var(--light-accent) 0%, #fefdfb 100%);
+        }
+
+        .carousel-container {
+            position: relative;
+            background: var(--text-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 50s linear infinite;
+            padding: 1rem 0;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .carousel-item {
+            flex: 0 0 300px;
+            background: linear-gradient(135deg, #fef9f5 0%, #fcf6f1 100%);
+            border-radius: 15px;
+            padding: 1.8rem;
+            border: 1px solid rgba(45, 45, 45, 0.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .carousel-item:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--secondary);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.2rem;
+        }
+
+        .carousel-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .carousel-item p {
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            color: var(--text-light);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25);
+        }
+
+        .prev-btn { left: 1.5rem; }
+        .next-btn { right: 1.5rem; }
+
+        /* ==================== CATALOGUE SECTION ==================== */
+        #catalogue {
+            background: linear-gradient(180deg, #fefdfb 0%, var(--accent) 100%);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: var(--text-light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(45, 45, 45, 0.08);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--secondary);
+        }
+
+        .product-images {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #fef9f5 0%, #fcf6f1 100%);
+            overflow: hidden;
+        }
+
+        .image-carousel {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .image-carousel img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-nav {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.6rem;
+            z-index: 5;
+        }
+
+        .image-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .image-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .image-dot.active {
+            background: var(--secondary);
+            width: 24px;
+            border-radius: 10px;
+            border-color: var(--secondary);
+        }
+
+        .product-info {
+            padding: 1.8rem;
+        }
+
+        .product-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-description {
+            color: #888;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        /* ==================== CONTACT SECTION ==================== */
+        #contact {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1a1a 100%);
+            color: var(--text-light);
+        }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--secondary);
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover .social-icon {
+            transform: scale(1.15);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
+        }
+
+        .social-link span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-item {
+                flex: 0 0 280px;
+            }
+
+            .carousel-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .contact-box {
+                padding: 2rem;
+            }
+
+            .social-links {
+                gap: 1.5rem;
+            }
+
+            .social-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .carousel-container {
+                padding: 1.5rem;
+            }
+
+            .carousel-item {
+                flex: 0 0 240px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img id="navLogo" src="images/logo.png" alt="Logo" style="display: none;">
+                <span>Resin by Dounia</span>
+            </div>
+            
+            <ul>
+                <li><button onclick="scrollToSection('about')">À propos</button></li>
+                <li><button onclick="scrollToSection('catalogue')">Catalogue</button></li>
+                <li><button onclick="scrollToSection('contact')">Contact</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Créations de Mariage en Résine</h1>
+            <p>Des objets uniques et élégants pour votre grand jour</p>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section id="about">
+        <div class="section-title">
+            <h2>À propos de moi</h2>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-track" id="aboutCarousel"></div>
+            <button class="carousel-btn prev-btn" onclick="prevAbout()">❮</button>
+            <button class="carousel-btn next-btn" onclick="nextAbout()">❯</button>
+        </div>
+    </section>
+
+    <!-- ==================== CATALOGUE ==================== -->
+    <section id="catalogue">
+        <div class="section-title">
+            <h2>Catalogue</h2>
+        </div>
+        
+        <div class="products-grid" id="productsContainer"></div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact">
+        <div class="section-title" style="margin-bottom: 2rem;">
+            <h2>Me contacter</h2>
+        </div>
+        
+        <div class="contact-box">
+            <h3>Retrouvez-moi sur les réseaux</h3>
+            <div class="social-links" id="socialContainer"></div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <p>&copy; 2024 Resin by Dounia. Tous droits réservés.</p>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        const CONFIG = {
+            aboutBlocks: [
+                { 
+                    image: 'image1.jpeg',
+                    title: 'Mon histoire',
+                    description: 'Découvrez mon parcours passionné dans la création d\'objets de mariage en résine.'
+                },
+                { 
+                    image: 'image2.jpeg',
+                    title: 'Ma passion',
+                    description: 'Chaque création est unique et faite avec amour pour votre jour spécial.'
+                },
+                { 
+                    image: 'image3.jpeg',
+                    title: 'Mes valeurs',
+                    description: 'Qualité exceptionnelle, élégance et originalité sont mes priorités.'
+                },
+                { 
+                    image: 'image4.jpeg',
+                    title: 'Mon savoir-faire',
+                    description: 'Des techniques maîtrisées pour des résultats extraordinaires.'
+                }
+            ],
+
+            products: [
+                {
+                    title: 'Porte-alliances de luxe',
+                    price: '45€',
+                    description: 'Boîte élégante en résine pour vos alliances précieuses.',
+                    images: ['product1-1.jpeg', 'product1-2.jpeg', 'product1-3.jpeg']
+                },
+                {
+                    title: 'Marque-places personnalisés',
+                    price: '12€ l\'unité',
+                    description: 'Petits objets en résine pour décorer votre table.',
+                    images: ['product2-1.jpeg', 'product2-2.jpeg']
+                },
+                {
+                    title: 'Vases de cérémonie',
+                    price: '55€',
+                    description: 'Vases sophistiqués pour vos bouquets.',
+                    images: ['product3-1.jpeg', 'product3-2.jpeg', 'product3-3.jpeg']
+                },
+                {
+                    title: 'Plateau pour les bagues',
+                    price: '38€',
+                    description: 'Plateau d\'exposition en résine.',
+                    images: ['product4-1.jpeg', 'product4-2.jpeg']
+                },
+                {
+                    title: 'Bougeoirs de table',
+                    price: '28€ la paire',
+                    description: 'Créez l\'ambiance avec style.',
+                    images: ['product5-1.jpeg', 'product5-2.jpeg', 'product5-3.jpeg']
+                },
+                {
+                    title: 'Accessoires de chambre',
+                    price: '35€',
+                    description: 'Coffrets décorés pour la mariée.',
+                    images: ['product6-1.jpeg', 'product6-2.jpeg']
+                }
+            ],
+
+            socialLinks: [
+                { name: 'Instagram', url: 'https://instagram.com', icon: '📷' },
+                { name: 'Facebook', url: 'https://facebook.com', icon: 'f' },
+                { name: 'Pinterest', url: 'https://pinterest.com', icon: '📌' },
+                { name: 'Email', url: 'mailto:contact@example.com', icon: '✉' }
+            ]
+        };
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function initAboutCarousel() {
+            const carousel = document.getElementById('aboutCarousel');
+            const allBlocks = [...CONFIG.aboutBlocks, ...CONFIG.aboutBlocks];
+            
+            allBlocks.forEach(block => {
+                const item = document.createElement('div');
+                item.className = 'carousel-item';
+                item.innerHTML = `
+                    <img src="images/${block.image}" alt="${block.title}" onerror="this.style.backgroundColor='#f5ede5'">
+                    <h3>${block.title}</h3>
+                    <p>${block.description}</p>
+                `;
+                carousel.appendChild(item);
+            });
+        }
+
+        function prevAbout() {
+            const carousel = document.getElementById('aboutCarousel');
+            carousel.style.animation = 'none';
+            setTimeout(() => carousel.style.animation = 'scroll 50s linear infinite', 50);
+        }
+
+        function nextAbout() {
+            const carousel = document.getElementById('aboutCarousel');
+            carousel.style.animation = 'scroll 25s linear infinite';
+        }
+
+        function initProducts() {
+            const container = document.getElementById('productsContainer');
+            
+            CONFIG.products.forEach((product, idx) => {
+                let imagesHTML = '';
+                let dotsHTML = '';
+                
+                product.images.forEach((img, imgIdx) => {
+                    imagesHTML += `<img src="images/${img}" alt="${product.title}" onerror="this.style.backgroundColor='#f5ede5'">`;
+                    dotsHTML += `<button class="image-dot ${imgIdx === 0 ? 'active' : ''}" onclick="changeImage(${idx}, ${imgIdx})"></button>`;
+                });
+                
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-images">
+                        <div class="image-carousel" id="carousel-${idx}" style="transform: translateX(0%)">${imagesHTML}</div>
+                        <div class="image-nav">${dotsHTML}</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.title}</h3>
+                        <div class="product-price">${product.price}</div>
+                        <p class="product-description">${product.description}</p>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function changeImage(productIdx, imageIdx) {
+            const carousel = document.getElementById(`carousel-${productIdx}`);
+            carousel.style.transform = `translateX(-${imageIdx * 100}%)`;
+            
+            const dots = carousel.parentElement.nextElementSibling.querySelectorAll('.image-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === imageIdx);
+            });
+        }
+
+        function initSocial() {
+            const container = document.getElementById('socialContainer');
+            
+            CONFIG.socialLinks.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.className = 'social-link';
+                a.innerHTML = `
+                    <div class="social-icon">${link.icon}</div>
+                    <span>${link.name}</span>
+                `;
+                container.appendChild(a);
+            });
+        }
+
+        function checkLogo() {
+            const logo = document.getElementById('navLogo');
+            const img = new Image();
+            img.onload = () => logo.style.display = 'block';
+            img.src = 'images/logo.png';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkLogo();
+            initAboutCarousel();
+            initProducts();
+            initSocial();
+        });
+    </script>
+
+</body>
+</html>
