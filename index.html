@@ -690,9 +690,9 @@
 
         function initAboutCarousel() {
             const carousel = document.getElementById('aboutCarousel');
-            const allBlocks = [...CONFIG.aboutBlocks, ...CONFIG.aboutBlocks];
+            const Blocks = CONFIG.aboutBlocks ;
             
-            allBlocks.forEach(block => {
+            Blocks.forEach(block => {
                 const item = document.createElement('div');
                 item.className = 'carousel-item';
                 item.innerHTML = `
